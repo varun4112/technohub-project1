@@ -1,0 +1,158 @@
+* {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+
+#navLogo {
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 600;
+    margin-top: 31px;
+    margin-left: 42px;
+}
+
+#signIn {
+    width: 396px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#headingRight {
+    font-size: 30px;
+    line-height: 45px;
+    font-weight: 500;
+    margin-bottom: 50px;
+}
+
+
+#loginButton {
+    background-color: #4D47C3;
+    border-radius: 8px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    color: #FFFFFF;
+    border: none;
+    width: 100%;
+    height: 62px;
+    margin-top: 10px;
+}
+
+#loginButton:hover {
+    background-color: #252086;
+
+}
+
+#forgotPassword {
+    text-decoration: none;
+    text-align: right;
+    color: #B0B0B0;
+    margin-bottom: 35px;
+    font-weight: 400;
+}
+
+#paraRight {
+    text-align: center;
+    color: #B0B0B0;
+    margin-top: 50px;
+    font-weight: 400;
+}
+
+#loginImage {
+    position: relative;
+    top: -130px;
+    right: -280px;
+}
+
+#loginBox {
+    position: relative;
+    right: -170px;
+    top: 120px;
+}
+
+#loginh1 {
+    font-size: 50px;
+    line-height: 75px;
+    font-weight: 600;
+}
+
+#h3Left {
+    font-size: 32px;
+    line-height: 52.5px;
+    font-weight: 500;
+}
+
+#p1left,
+#p2left {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    margin: 0;
+}
+
+#loginRegisterLink {
+    text-decoration: none;
+    font-weight: 600;
+    color: #4D47C3;
+}
+
+#loginCompanies {
+    display: flex;
+    position: relative;
+    left: 25%;
+    margin-top: 40px;
+
+}
+
+.loginCompanyLogos {
+    height: 42px;
+    width: 42px;
+    margin-left: 15px;
+}
+
+.loginCompanyLogos:hover {
+    cursor: pointer;
+}
+
+@media only screen and (max-width: 400px) {
+    #loginBox {
+        box-sizing: border-box;
+        position: static;
+        text-align: center;
+    }
+
+    #loginImgage {
+        height: 50px;
+    }
+
+    #loginImg {
+        display: none;
+    }
+
+    #signIn {
+        text-align: center;
+        padding: 0 !important;
+
+
+    }
+
+    .col {
+        padding: 0 !important;
+        width: 400px;
+        margin: 0px !important;
+    }
+
+    #loginCompanies {
+        margin-bottom: 40px;
+        position: static;
+        padding-left: 100px;
+    }
+
+
+
+    #brandNav {
+        margin-top: 40px;
+    }
+}

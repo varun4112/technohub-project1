@@ -1,0 +1,49 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#productInfoPrice {
+    margin: 0 !important;
+}
+
+#carouselInfo {
+    border: 2px solid rgb(94, 132, 133);
+    border-radius: 4px;
+}
+
+#productInfo {
+    border-right: 2px solid rgb(94, 132, 133);
+}
+
+#productInfoHeading {
+    color: white;
+
+}
+
+#productInfoPrice {
+    font-weight: 400;
+    color: grey;
+}
+
+#carouselImage {
+    height: 400px;
+    position: relative;
+    margin-top: 0;
+    margin-left: 0;
+    transform: rotate(20deg);
+    filter: drop-shadow(40px 5px 10px #222);
+}
+
+
+#carouselButton {
+    background-color: rgb(144, 255, 4);
+    border: none;
+    border-radius: 6px;
+    top: auto;
+}
+
+#carouselButton:hover {
+    background-color: rgb(95, 172, 1);
+
+}

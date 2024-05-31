@@ -1,0 +1,57 @@
+* {
+    padding: 0;
+    margin: 0;
+
+}
+
+#navBar {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+}
+
+#BrandName {
+    margin-left: 30px;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: 600;
+    font-size: 25px;
+    color: rgb(152, 255, 0);
+}
+
+#navList {
+    display: flex;
+    justify-content: space-between;
+    list-style: none;
+}
+
+#listItem1,
+#listItem {
+    margin-right: 50px;
+    padding-bottom: 10px;
+    color: #ffffff;
+    font-weight: 200;
+}
+
+#listItem,
+#listItem1:hover {
+    padding-bottom: 5px;
+    border-bottom-style: solid;
+    border-bottom-width: 3.1px;
+    border-bottom-color: #7cd50a;
+    width: fit-content;
+    font-weight: 400;
+}
+
+#dropdownButton {
+    margin-right: 50px;
+    padding-bottom: 10px;
+    color: #ffffff;
+    font-weight: 200;
+    cursor: pointer;
+}
+
+#userAvtar {
+    height: 20px;
+    border-radius: 4px;
+}
+

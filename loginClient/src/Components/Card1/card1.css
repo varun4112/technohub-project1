@@ -1,0 +1,36 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+#cardBox {
+    box-sizing: border-box;
+    background-color: white;
+    border-radius: 10px;
+    text-align: center;
+    height: 270px;
+    width: 217px;
+}
+
+#cardHeading {}
+
+#cardButton {
+    background-color: rgb(144, 255, 4);
+    border: none;
+    border-radius: 6px;
+}
+
+#cardButton:hover {
+    background-color: rgb(95, 172, 1);
+
+}
+
+#cardPara1 {
+    margin: 0;
+    color: grey;
+}
+
+#cardImg {
+    height: 150px;
+
+}

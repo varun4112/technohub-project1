@@ -1,0 +1,34 @@
+* {
+    padding: 0;
+    margin: 0;
+
+}
+
+#bodyDiv {
+    background-image: linear-gradient(to right, rgb(26, 43, 42), rgb(56, 94, 94));
+    min-height: 100vh;
+}
+
+#homeHeading {
+    font-size: 50px;
+    color: white;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-weight: 600;
+    line-height: 50px;
+}
+
+#homePara,
+#featured {
+    color: white;
+    line-height: 30px;
+}
+
+#card1 {
+    background-color: white;
+    width: 200px;
+}
+
+.carousel-control-prev,
+.carousel-control-next {
+    display: none;
+}

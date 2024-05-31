@@ -1,0 +1,147 @@
+* {
+    font-family: "Poppins", sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+#navLogo {
+    font-size: 20px;
+    line-height: 30px;
+    font-weight: 600;
+    margin-top: 31px;
+    margin-left: 42px;
+}
+
+#headingLeft {
+    font-size: 30px;
+    line-height: 45px;
+    font-weight: 500;
+    margin-bottom: 50px;
+}
+
+#h1Left {
+    font-size: 50px;
+    line-height: 75px;
+    font-weight: 600;
+}
+
+#h3Right {
+    font-size: 32px;
+    line-height: 52.5px;
+    font-weight: 500;
+}
+
+#p1right,
+#p2right {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    margin: 0;
+}
+
+#span1right {
+    text-decoration: none;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 600;
+    color: #4d47c3;
+}
+
+#LoginImageRight {
+    width: 313px;
+    height: 556px;
+    position: absolute;
+    top: 175px;
+    right: 10px;
+}
+
+input,
+.passwordInput {
+    width: 100%;
+    height: 52px;
+    margin-bottom: 20px;
+    padding: 15px;
+    padding-left: 25px;
+    border: 0;
+    background-color: #F0EFFF;
+    border-radius: 8px;
+    outline: none;
+}
+
+#passwordLabel {
+    color: #A7A3FF;
+    font-family: "Poppins", sans-serif;
+
+}
+
+#regButton {
+    background-color: #4D47C3;
+    border-radius: 8px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    color: #FFFFFF;
+    border: none;
+    width: 100%;
+    height: 62px;
+    margin-top: 10px;
+}
+
+#regButton:hover {
+    background-color: #252086;
+
+}
+
+#paraLeft {
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 500;
+    color: #B5B5B5;
+    margin-top: 60px;
+}
+
+.regCompanyLogos {
+    height: 42px;
+    width: 42px;
+    margin-left: 15px;
+}
+
+#regCompanies {
+    display: flex;
+    position: relative;
+    left: 25%;
+    margin-top: 40px;
+
+}
+
+::placeholder {
+    color: #A7A3FF;
+}
+
+@media only screen and (max-width: 400px) {
+    * {
+        text-align: center;
+    }
+
+    #LoginImageRight {
+        display: none;
+    }
+
+    .rootDiv {
+        margin-bottom: 30px;
+        margin-top: 30px;
+    }
+
+    #regDiv {
+        width: 400px;
+        margin-left: 12px;
+        margin-right: 12px;
+    }
+
+    #regCompanies {
+
+        position: static;
+        padding-left: 100px;
+    }
+
+}
