@@ -5,6 +5,9 @@ import Dashboard from "./Pages/Dashboard/Dashboard";
 import { AuthProvider } from "./Pages/Context/TokenAuth";
 import PrivateRoute from "./Pages/Context/privateRoute";
 import AdminHome from "./Pages/AdminHome/AdminHome";
+import Verification from "./Pages/Verification/Verification";
+import VerificationComplete from "./Pages/VerificationComplete/VerificationComplete";
+import PhoneVerification from "./Pages/PhoneVerification/PhoneVerification";
 
 function App() {
   return (
@@ -14,6 +17,12 @@ function App() {
           <Routes>
             <Route path="/" element={<Login />} />
             <Route path="register" element={<Register />} />
+            <Route
+              path="verificationComplete"
+              element={<VerificationComplete />}
+            />
+            <Route path="emailVerification" element={<Verification />} />
+            <Route path="phoneVerification" element={<PhoneVerification />} />
             <Route
               path="/dashboard"
               element={

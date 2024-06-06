@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 const bcrypt = require("bcrypt");
 
 exports.register = async (req, res) => {
-  const { userName, email, password } = req.body;
+  const { userName, email, password, phone } = req.body;
 
   try {
     const existingUser = await user.findOne({ email });
@@ -18,6 +18,7 @@ exports.register = async (req, res) => {
         userName,
         email,
         password: hashedPassword,
+        phone,
       });
       await newUser.save();
       console.log(`${userName},${email},${password}`);
@@ -83,5 +84,26 @@ exports.googleLogin = async (req, res) => {
 };
 
 exports.dummy = async (req, res) => {
-  res.status(500).json("You have accesed dummy api");
+  res.status(500).json(`You have accesed dummy api`);
+};
+
+exports.em = async (req, res) => {
+  console.log("inside");
+  try {
+    const { email } = req.body;
+    const userd = await user.findOne({ email }); // Use User instead of user
+    console.log(userd);
+    if (!userd) {
+      return res.status(404).json({ error: "User not found" });
+    }
+    userd.emailVerification = true;
+    const updatedUser = await userd.save(); // `user` here is an instance of `User`
+    console.log(updatedUser);
+    res
+      .status(200)
+      .json({ message: "Email verified successfully", user: updatedUser });
+  } catch (err) {
+    console.error(err); // Log the error for debugging
+    res.status(500).json({ error: "Internal server error" });
+  }
 };

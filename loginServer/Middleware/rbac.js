@@ -4,7 +4,6 @@ const rbacMiddleware = async (req, res, next) => {
   try {
     const email = req.body.email;
     const existingUser = await user.findOne({ email });
-    console.log(existingUser);
 
     if (!existingUser) {
       return res.status(404).json({ error: "User not found" });

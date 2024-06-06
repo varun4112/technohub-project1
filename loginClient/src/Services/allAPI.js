@@ -12,3 +12,11 @@ export const loginAPI = async (user) => {
 export const googleLoginAPI = async (user) => {
   return await commonAPI("POST", `${baseUrl}/api/googleLogin`, user, "");
 };
+
+export const generateOtpAPI = async (user) => {
+  return await commonAPI("POST", `${baseUrl}/emailGeneration`, user, "");
+};
+
+export const emailOtpVerificationAPI = async (user) => {
+  return await commonAPI("POST", `${baseUrl}/emailverification`, user, "");
+};

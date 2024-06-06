@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Col, Container, Row } from "react-bootstrap";
 import { Link, useNavigate } from "react-router-dom";
-import { loginAPI, registerAPI } from "../../Services/allAPI";
+import { generateOtpAPI, loginAPI, registerAPI } from "../../Services/allAPI";
 import "./register.css";
 import LoginImageRight from "../Assets/Saly-14loginRightImage.png";
 import facebook from "../Assets/Facebook.png";
@@ -9,38 +9,63 @@ import google from "../Assets/google.png";
 import apple from "../Assets/apple.png";
 
 function Register() {
+  // State to hold the registration form data
   const [regData, setRegData] = useState({
     userName: "",
     email: "",
     password: "",
+    phone: "",
   });
 
+  // State to hold the confirm password field value
   const [confirmPassword, setConfirmPassword] = useState("");
 
   const navigate = useNavigate();
 
+  // Function to handle form submission for registration
   const handleRegister = async (e) => {
     e.preventDefault();
 
-    const { userName, email, password } = regData;
-    if (!userName || !email || !password || !confirmPassword) {
-      alert("Enter All Feilds");
-    } else if (password != confirmPassword) {
-      alert("Passwords Does not match! Please Try Again");
-    } else {
+    const { userName, email, password, phone } = regData;
+
+    // Check if all fields are filled
+    if (!userName || !email || !password || !confirmPassword || !phone) {
+      alert("Enter All Fields");
+    }
+    // Check if password and confirm password match
+    else if (password !== confirmPassword) {
+      alert("Passwords Do not match! Please Try Again");
+    }
+    // Make API call to register the user
+    else {
       const result = await registerAPI(regData);
-      if (result.status == 200) {
-        alert("Registration Successfull");
+      if (result.status === 200) {
+        alert("Registration Successful");
+        await generateOtp(email);
+        // Reset the form fields
         setRegData({
           userName: "",
           email: "",
           password: "",
+          phone: "",
         });
-        navigate("/");
+        navigate("/emailVerification");
+        sessionStorage.setItem("email", JSON.stringify(email));
       } else {
         console.log(result.status);
         alert(result.response.data);
       }
+    }
+  };
+
+  const generateOtp = async (email) => {
+    try {
+      const result = await generateOtpAPI({ email });
+      if (result.status === 200) {
+        alert("OTP Successfully Generated");
+      }
+    } catch (err) {
+      console.error(err);
     }
   };
 
@@ -63,6 +88,14 @@ function Register() {
                 }}
               />
               <input
+                type="number"
+                placeholder="Enter Phone"
+                value={regData.phone}
+                onChange={(e) => {
+                  setRegData({ ...regData, phone: e.target.value });
+                }}
+              />
+              <input
                 type="text"
                 placeholder="Create User Name"
                 value={regData.userName}
@@ -70,7 +103,6 @@ function Register() {
                   setRegData({ ...regData, userName: e.target.value });
                 }}
               />
-
               <input
                 type="password"
                 placeholder="Password"
@@ -116,13 +148,14 @@ function Register() {
             <p id="p2right">
               You can{" "}
               <Link to="/" id="span1right">
-                Login here !
+                Login here!
               </Link>
             </p>
             <img src={LoginImageRight} id="LoginImageRight" alt="login Image" />
           </Col>
         </Row>
       </Container>
+      <button onClick={generateOtp}>Generate Otp</button>
     </div>
   );
 }

@@ -13,9 +13,17 @@ import { useAuth } from "../Context/TokenAuth";
 
 function Login() {
   const { login } = useAuth();
+  const [userData, setUserData] = useState({
+    email: "",
+    password: "",
+  });
+  const navigate = useNavigate();
+
+  // Function to handle Google login using react-oauth/google
   const handleGoogleFetch = useGoogleLogin({
     onSuccess: async (credentialResponse) => {
       try {
+        // Fetch user info from Google
         const response = await axios.get(
           "https://www.googleapis.com/oauth2/v3/userinfo",
           {
@@ -31,6 +39,7 @@ function Login() {
           profilePic: response.data.picture,
         };
 
+        // Handle the fetched user info
         await handleGoogleLogin(newUserInfo);
       } catch (error) {
         console.error("Error fetching data:", error);
@@ -41,6 +50,7 @@ function Login() {
     },
   });
 
+  // Function to handle Google login and registration on the server
   const handleGoogleLogin = async (userInfo) => {
     try {
       const result = await googleLoginAPI(userInfo);
@@ -62,23 +72,17 @@ function Login() {
     }
   };
 
-  const [userData, setUserData] = useState({
-    email: "",
-    password: "",
-  });
-
-  const navigate = useNavigate();
-
+  // Function to handle regular login form submission
   const handleLogin = async (e) => {
     e.preventDefault();
 
     const { email, password } = userData;
     if (!email || !password) {
-      alert("Please Enter the Feilds");
+      alert("Please Enter the Fields");
     } else {
       const result = await loginAPI(userData);
       if (result.status == 200) {
-        alert("Login Successfull");
+        alert("Login Successful");
 
         sessionStorage.setItem(
           "existingUser",
@@ -114,7 +118,7 @@ function Login() {
             <p id="p2left">
               You can{" "}
               <Link to="/register" id="loginRegisterLink">
-                Register Here !
+                Register Here!
               </Link>
             </p>
             <span id="loginImage">
