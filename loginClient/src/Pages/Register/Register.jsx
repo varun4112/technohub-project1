@@ -51,6 +51,7 @@ function Register() {
         });
         navigate("/emailVerification");
         sessionStorage.setItem("email", JSON.stringify(email));
+        sessionStorage.setItem("phone", JSON.stringify(phone));
       } else {
         console.log(result.status);
         alert(result.response.data);

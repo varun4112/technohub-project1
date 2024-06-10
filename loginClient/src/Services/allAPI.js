@@ -20,3 +20,11 @@ export const generateOtpAPI = async (user) => {
 export const emailOtpVerificationAPI = async (user) => {
   return await commonAPI("POST", `${baseUrl}/emailverification`, user, "");
 };
+
+export const generatePhoneOtpAPI = async (user) => {
+  return await commonAPI("POST", `${baseUrl}/generatePhoneOtp`, user, "");
+};
+
+export const phoneOtpVerificationAPI = async (user) => {
+  return await commonAPI("POST", `${baseUrl}/phoneVerification`, user, "");
+};

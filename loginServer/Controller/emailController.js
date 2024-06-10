@@ -20,6 +20,7 @@ exports.sendEmail = async (req, res) => {
   const otp = Math.floor(Math.random() * 900000) + 100000;
   try {
     const { email, _id } = req.body;
+    
     const mailOptions = {
       from: {
         address: process.env.EMAIL_USER,
@@ -43,15 +44,14 @@ exports.sendEmail = async (req, res) => {
   </div>`,
     };
 
-    // const salt = await bcrypt.genSalt(10);
-    // const hashedOtp = await bcrypt.hash(otp.toString(), salt);
+    await emailSchema.deleteMany({ email });
 
     const newVerification = await new emailSchema({
       userId: _id,
       email,
       otp,
       createdAt: Date.now(),
-      expiresAt: Date.now() + 300000, // Set expiration time 5 minutes from now
+      expiresAt: Date.now() + 300000,
     });
 
     await newVerification.save();
@@ -78,12 +78,6 @@ exports.verifyOtp = async (req, res) => {
       return res.status(410).json({ error: "OTP expired" });
     }
 
-    // Uncomment if you need to compare hashed OTPs
-    // const validOtp = await bcrypt.compare(otp, existingUser.otp);
-    // if (!validOtp) {
-    //   return res.status(400).json({ error: "Incorrect OTP" });
-    // }
-
     const userd = await user.findOne({ email });
     if (!userd) {
       return res.status(404).json({ error: "User not found" });
@@ -91,6 +85,7 @@ exports.verifyOtp = async (req, res) => {
 
     userd.emailVerification = true;
     const updatedUser = await userd.save();
+    await emailSchema.deleteMany({ email });
 
     return res.status(200).json({
       message: "Email verified successfully",

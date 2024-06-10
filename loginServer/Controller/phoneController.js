@@ -12,7 +12,10 @@ exports.sendPhoneOtp = async (req, res) => {
   const otp = Math.floor(Math.random() * 900000) + 100000;
   try {
     const { phone } = req.body;
-    const newPhoneVerification = await new phoneSchema({
+
+    await phoneSchema.deleteMany({ phone });
+
+    const newPhoneVerification = new phoneSchema({
       phone,
       otp,
       createdAt: Date.now(),
@@ -20,26 +23,28 @@ exports.sendPhoneOtp = async (req, res) => {
     });
     await newPhoneVerification.save();
 
+    // Send the OTP using Twilio
     await client.messages.create({
       body: `Your OTP is ${otp}`,
-      from: "+16365565715", // Your Twilio phone number
-      to: "+918943196722",
+      from: "+16365565715",
+      to: `+91${phone}`,
     });
-    return res.status(200).json("OTP sent successfully");
+
+    return res.status(200).json({ message: "OTP sent successfully" });
   } catch (err) {
     console.error("Error sending OTP:", err);
-    res.status(500).json("Error sending OTP");
+    return res
+      .status(500)
+      .json({ message: "Error sending OTP", error: err.message });
   }
 };
 
-// verify Phone OTP
+
 exports.verifyOtp = async (req, res) => {
   try {
     const { otp, phone } = req.body;
-    const existingOtpEntry = await phoneSchema.findOne({
-      phone,
-      otp,
-    });
+
+    const existingOtpEntry = await phoneSchema.findOne({ phone, otp });
     console.log(existingOtpEntry);
 
     if (!existingOtpEntry) {
@@ -47,17 +52,20 @@ exports.verifyOtp = async (req, res) => {
     }
 
     if (existingOtpEntry.expiresAt < Date.now()) {
+      await phoneSchema.deleteMany({ phone, otp });
       return res.status(410).json({ error: "OTP expired" });
     }
 
     const userRecord = await user.findOne({ phone });
-    console.log(userRecord);
+
     if (!userRecord) {
       return res.status(404).json({ error: "User not found" });
     }
 
     userRecord.phoneVerification = true;
     const updatedUser = await userRecord.save();
+
+    await phoneSchema.deleteMany({ phone, otp });
 
     return res.status(200).json({
       message: "Phone verified successfully",
@@ -69,5 +77,6 @@ exports.verifyOtp = async (req, res) => {
     return res.status(500).json({ error: "Internal server error" });
   }
 };
+
 
 module.exports = exports;

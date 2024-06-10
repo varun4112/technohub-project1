@@ -14,7 +14,7 @@ function Dashboard() {
   const [googleUserInfo, setGoogleUserInfo] = useState({});
 
   // Log the profile picture URL to the console
-  console.log(googleUserInfo.profilePic);
+  // console.log(googleUserInfo.profilePic);
 
   // UseEffect hook to get the user info from session storage
   useEffect(() => {

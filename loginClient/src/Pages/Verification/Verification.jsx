@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Container } from "react-bootstrap";
 import email from "../Assets/email.png";
 import "./verification.css";
-import { emailOtpVerificationAPI } from "../../Services/allAPI";
+import { emailOtpVerificationAPI, generateOtpAPI } from "../../Services/allAPI";
 import { useNavigate } from "react-router";
 
 function Verification() {
@@ -11,9 +11,19 @@ function Verification() {
   const [userEmail, setUserEmail] = useState(() =>
     JSON.parse(sessionStorage.getItem("email"))
   );
-  console.log(userEmail);
 
-  // useEffect((),[])
+  // generate OTP
+  const generateOtp = async (email) => {
+    console.log("gen OTP");
+    try {
+      const result = await generateOtpAPI({ email });
+      if (result.status === 200) {
+        alert("OTP Successfully Generated");
+      }
+    } catch (err) {
+      console.error(err);
+    }
+  };
 
   const handleOtpSubmit = async (e) => {
     e.preventDefault();
@@ -66,7 +76,9 @@ function Verification() {
           <button className="btn btn-outline-success" onClick={handleOtpSubmit}>
             Submit OTP
           </button>
-          <p id="resendOtp">Resend OTP</p>
+          <p id="resendOtp" onClick={generateOtp}>
+            Resend OTP
+          </p>
         </div>
       </Container>
     </>

@@ -16,7 +16,6 @@ app.use(express.json());
 
 // Routes
 app.use(router);
-// app.use("/twilio-sms", twilioRouter);
 
 // MongoDB connection string from environment variables
 const connectionString = process.env.DATABASE;
